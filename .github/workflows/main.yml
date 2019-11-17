@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  schedule:
+  - cron: "0 2 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: dnsvalidator
+      uses: docker://s14ve:dnsvalidator:1.0
+      with:
+        args: '-tL https://public-dns.info/nameservers.txt -threads 2 -o resolvers.txt'
+    - name: Push to repo
+      env:
+        GHA_DEPLOY_KEY: ${{ secrets.GHA_DEPLOY_KEY }}
+      run: |
+        cp package.json dist/
+        git checkout tip
+        mv dist/* ./
+        rm -rf dist
+        rm -Rf node_modules
+        yarn install --production
+        rm package.json
+        echo "JavaScript (TypeScript) actions" > README.md
+        rm yarn.lock
+        if ! git diff --no-ext-diff --quiet --exit-code; then
+          git add .
+          git config --local user.email "tip@gha"
+          git config --local user.name "GHA"
+          git commit -a -m "update"
+          git remote set-url origin "$(git config --get remote.origin.url | sed 's#http.*com/#git@github.com:#g')"
+          eval `ssh-agent -t 60 -s`
+          echo "$GHA_DEPLOY_KEY" | ssh-add -
+          mkdir -p ~/.ssh/
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git push
+          ssh-agent -k
+        fi
