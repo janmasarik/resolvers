@@ -15,7 +15,7 @@ jobs:
     - name: Run a one-line script
       run: echo Hello, world!
     - name: dnsvalidator
-      uses: docker://s14ve:dnsvalidator:1.0
+      uses: docker://s14ve/dnsvalidator:1.0
       with:
         args: '-tL https://public-dns.info/nameservers.txt -threads 2 -o resolvers.txt'
     - name: Push to repo
