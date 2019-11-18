@@ -17,10 +17,8 @@ jobs:
       run: |
         git clone https://github.com/vortexau/dnsvalidator
         cd dnsvalidator
-        python3 --version
-        sudo apt-get install python3-setuptools
-        python3 setup.py install
-        dnsvalidator -tL https://public-dns.info/nameservers.txt -threads 15 -o ../resolvers.txt
+        pip3 install -r requirements.txt
+        python3 dnsvalidator/dnsvalidator.py -tL https://public-dns.info/nameservers.txt -threads 15 -o ../resolvers.txt
         head ../resolvers.txt
     - name: test cat
       run: |
