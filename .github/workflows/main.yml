@@ -14,13 +14,18 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: test cat
-      run: echo test > test.txt || cat test.txt
-    - name: dnsvalidator
-      uses: docker://alpine
-      with:
-        args: 'echo test > test1.txt || cat test1.txt'
+      run: |
+        git clone https://github.com/vortexau/dnsvalidator
+        cd dnsvalidator
+        python --version
+        pip -V
+        python3 setup.py install
+        dnsvalidator -tL https://public-dns.info/nameservers.txt -threads 15 -o ../resolvers.txt
+        head ../resolvers.txt
     - name: test cat
-      run: cat test.txt
+      run: |
+        head resolvers.txt
+        head ../resolvers.txt
     - name: test1 cat
       run: cat test1.txt
     - name: Commit files
