@@ -21,7 +21,7 @@ jobs:
         args: 'echo test > test1.txt || cat test1.txt'
     - name: test cat
       run: cat test.txt
-    - name: test cat
+    - name: test1 cat
       run: cat test1.txt
     - name: Commit files
       run: |
