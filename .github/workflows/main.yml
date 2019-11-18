@@ -13,10 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: test cat
+      run: echo test > test.txt || cat test.txt
     - name: dnsvalidator
-      uses: docker://s14ve/dnsvalidator:1.0
+      uses: docker://alpine
       with:
-        args: '-tL https://public-dns.info/nameservers.txt -threads 15 -o resolvers.txt'
+        args: 'echo test > test1.txt || cat test1.txt'
+    - name: test cat
+      run: cat test.txt
+    - name: test cat
+      run: cat test1.txt
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
