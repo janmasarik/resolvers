@@ -19,8 +19,8 @@ jobs:
         cd dnsvalidator
         pip3 install wheel
         pip3 install setuptools
-        pip3 install -r requirements.txt
-        python3 dnsvalidator/dnsvalidator.py -tL https://public-dns.info/nameservers.txt -threads 15 -o ../resolvers.txt
+        python3 setup.py install
+        dnsvalidator/dnsvalidator.py -tL https://public-dns.info/nameservers.txt -threads 15 -o ../resolvers.txt
         head ../resolvers.txt
     - name: test cat
       run: |
