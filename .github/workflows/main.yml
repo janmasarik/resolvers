@@ -16,7 +16,7 @@ jobs:
     - name: dnsvalidator
       uses: docker://s14ve/dnsvalidator:1.0
       with:
-        args: '-tL https://public-dns.info/nameservers.txt -threads 2 -o resolvers.txt'
+        args: '-tL https://public-dns.info/nameservers.txt -threads 15 -o resolvers.txt'
     - name: Commit files
       run: |
         git config --local user.email "action@github.com"
