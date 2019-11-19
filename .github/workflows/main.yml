@@ -15,20 +15,16 @@ jobs:
     - uses: actions/checkout@master
     - name: dnsvalidator
       run: |
-        echo kek > resolvers.txt
-#         git clone https://github.com/vortexau/dnsvalidator
-#         cd dnsvalidator
-#         pip3 install wheel
-#         pip3 install setuptools
-#         sudo python3 setup.py install
-#         dnsvalidator -tL https://public-dns.info/nameservers.txt -threads 15 -o ../resolvers.txt
+        git clone https://github.com/vortexau/dnsvalidator
+        cd dnsvalidator
+        pip3 install wheel
+        pip3 install setuptools
+        sudo python3 setup.py install
+        dnsvalidator -tL https://public-dns.info/nameservers.txt -threads 15 -o ../resolvers.txt
     - name: Commit resolvers.txt
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add resolvers.txt
         git commit -m "Update resolvers" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_PERSONAL_TOKEN }}
+        git push "https://${GITHUB_ACTOR}:${secrets.GITHUB_PERSONAL_TOKEN}@github.com/janmasarik/resolvers.git" master
