@@ -21,14 +21,7 @@ jobs:
         pip3 install setuptools
         sudo python3 setup.py install
         dnsvalidator -tL https://public-dns.info/nameservers.txt -threads 15 -o ../resolvers.txt
-        head ../resolvers.txt
-    - name: test cat
-      run: |
-        head resolvers.txt
-        head ../resolvers.txt
-    - name: test1 cat
-      run: cat test1.txt
-    - name: Commit files
+    - name: Commit resolvers.txt
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
@@ -37,4 +30,4 @@ jobs:
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
-        github_token: ${{ secrets.GITHUB_PERSONAL_TOKEN }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
