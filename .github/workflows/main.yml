@@ -15,7 +15,7 @@ jobs:
     - uses: actions/checkout@master
     - name: dnsvalidator
       run: |
-          echo kek > resolvers.txt
+        echo kek > resolvers.txt
 #         git clone https://github.com/vortexau/dnsvalidator
 #         cd dnsvalidator
 #         pip3 install wheel
