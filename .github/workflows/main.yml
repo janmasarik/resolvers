@@ -13,14 +13,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: dnsvalidator
-      run: |
-        git clone https://github.com/vortexau/dnsvalidator
-        cd dnsvalidator
-        pip3 install wheel
-        pip3 install setuptools
-        sudo python3 setup.py install
-        dnsvalidator -tL https://public-dns.info/nameservers.txt -threads 15 -o ../resolvers.txt
+    - name: echo
+      run: echo test > resolvers.txt
+#     - name: dnsvalidator
+#       run: |
+#         git clone https://github.com/vortexau/dnsvalidator
+#         cd dnsvalidator
+#         pip3 install wheel
+#         pip3 install setuptools
+#         sudo python3 setup.py install
+#         dnsvalidator -tL https://public-dns.info/nameservers.txt -threads 15 -o ../resolvers.txt
     - name: Commit resolvers.txt
       run: |
         git config --local user.email "action@github.com"
