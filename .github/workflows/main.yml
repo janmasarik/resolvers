@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: test cat
+    - name: dnsvalidator
       run: |
         git clone https://github.com/vortexau/dnsvalidator
         cd dnsvalidator
