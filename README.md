@@ -1,5 +1,5 @@
 # resolvers.txt
-List of validated public DNS resolvers.
+List of periodically validated public DNS resolvers.
  
 ```bash
 $ wget https://raw.githubusercontent.com/janmasarik/resolvers/master/resolvers.txt
