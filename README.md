@@ -1,5 +1,10 @@
 # resolvers.txt
-List of validated public DNS resolvers. 
+List of validated public DNS resolvers.
+ 
+```bash
+$ wget https://raw.githubusercontent.com/janmasarik/resolvers/master/resolvers.txt
+$ massdns -r resolvers.txt domains_to_resolve.txt
+```
 
 ## Why?
 People need a list of *good* resolvers (e.g. for [massdns](https://github.com/blechschmidt/massdns)). Why spend all that traffic on refreshing a private list? Let's use and improve this one! ᕕ( ᐛ )ᕗ
