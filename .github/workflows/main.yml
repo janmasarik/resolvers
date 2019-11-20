@@ -20,7 +20,7 @@ jobs:
         pip3 install wheel
         pip3 install setuptools
         sudo python3 setup.py install
-        dnsvalidator -tL https://public-dns.info/nameservers.txt -threads 25 -o ../resolvers.txt
+        dnsvalidator -tL https://public-dns.info/nameserver/cz.txt -threads 25 -o ../resolvers.txt
     - name: Commit resolvers.txt
       run: |
         git config --local user.email "action@github.com"
