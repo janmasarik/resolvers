@@ -1,12 +1,8 @@
 name: CI
 
-# on:
-#   schedule:
-#   - cron: "0 2 * * *"
-
 on:
-  issues:
-    types: [opened]
+  schedule:
+  - cron: "0 15 * * *"
 
 jobs:
   build:
