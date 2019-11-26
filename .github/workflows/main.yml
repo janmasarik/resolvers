@@ -3,6 +3,7 @@ name: CI
 on:
   schedule:
   - cron: "0 8,20 * * *"
+  push:
 
 jobs:
   build:
@@ -19,7 +20,7 @@ jobs:
         pip3 install setuptools
         sudo python3 setup.py install
         rm ../resolvers.txt
-        dnsvalidator -tL https://raw.githubusercontent.com/janmasarik/resolvers/master/resolvers.txt -threads 20 -o ../resolvers.txt
+        dnsvalidator -tL https://raw.githubusercontent.com/blechschmidt/massdns/master/lists/resolvers.txt -threads 20 -o ../resolvers.txt
     - name: Commit resolvers.txt
       run: |
         git config --local user.email "action@github.com"
