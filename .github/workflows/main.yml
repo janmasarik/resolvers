@@ -19,7 +19,7 @@ jobs:
         pip3 install setuptools
         sudo python3 setup.py install
         rm ../resolvers.txt
-        dnsvalidator -tL https://raw.githubusercontent.com/janmasarik/resolvers/master/resolvers.txt -threads 10 -o ../resolvers.txt
+        dnsvalidator -tL https://raw.githubusercontent.com/janmasarik/resolvers/master/resolvers.txt -threads 5 -o ../resolvers.txt
     - name: Commit resolvers.txt
       run: |
         git config --local user.email "action@github.com"
