@@ -20,7 +20,9 @@ jobs:
         sudo python3 setup.py install
         rm ../resolvers.txt
         dnsvalidator -tL https://raw.githubusercontent.com/janmasarik/resolvers/master/resolvers.txt -threads 5 -o ../resolvers.txt
+        dnsvalidator -tL https://public-dns.info/nameservers.txt -threads 5 -o ../resolvers.txt
         sed -i '/^$/d' ../resolvers.txt
+        sort -uR ../resolvers.txt  -o ../resolvers.txt
     - name: Commit resolvers.txt
       run: |
         git config --local user.email "action@github.com"
